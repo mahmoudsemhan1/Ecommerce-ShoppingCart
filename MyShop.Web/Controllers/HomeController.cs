@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using MyShop.Web.Models;
+using MyShop.DataAcess;
+using MyShop.Entities.Models;
 using System.Diagnostics;
 
 namespace MyShop.Web.Controllers
