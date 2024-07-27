@@ -22,6 +22,20 @@ namespace MyShop.DataAccess.Implementation
 
         }
 
+        public IEnumerable<Category> GetAllCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
+        public Product GetById(int id)
+        {
+            var ProCat=_context.products
+                .Include(c=>c.category)
+                .SingleOrDefault(x=>x.Id==id);
+            return ProCat;
+
+        }
+
         public void update(Category category)
         {
             var categoryInDb=_context.Categories.FirstOrDefault(x=>x.Id==category.Id);

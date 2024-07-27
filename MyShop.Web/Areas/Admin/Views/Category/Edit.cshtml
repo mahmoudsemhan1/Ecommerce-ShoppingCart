@@ -2,7 +2,6 @@
 @{
     ViewBag.PageTitle = "Category Managment";
     ViewBag.CardTitle = "Edit Category";
-    Layout = "_AdminLayout";
 }
 
 
@@ -28,7 +27,7 @@
     </div>
 </div>
 <div>
-    <a asp-action="Index">Back To list</a>
+    <a asp-action="Index" class="btn btn-secondary">Back To list</a>
 </div>
 @section Scripts {
     <partial name="_validationscriptspartial" />

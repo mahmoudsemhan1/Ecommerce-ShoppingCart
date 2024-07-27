@@ -45,23 +45,29 @@ namespace MyShop.DataAccess.Implementation
             return query.ToList();
         }
 
-        public T GetFirstOrDefualt(Expression<Func<T, bool>>? perdicate=null, string? IncludeWord = null)
+
+
+        public T GetFirstOrDefualt(Expression<Func<T, bool>> filter, string includeProperties = null)
         {
             IQueryable<T> query = _dbset;
-            if (perdicate != null)
+
+            if (filter != null)
             {
-                query = query.Where(perdicate);
+                query = query.Where(filter);
             }
-            if (IncludeWord != null)
+
+            if (!string.IsNullOrWhiteSpace(includeProperties))
             {
-                //_context.Products.Include("Ctegory,Logos,Users")
-                foreach (var item in IncludeWord.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = query.Include(item);
+                    query = query.Include(includeProperty);
                 }
             }
-            return query.SingleOrDefault();
+
+            return query.FirstOrDefault();
         }
+
+       
 
         public void Remove(T entity)
         {

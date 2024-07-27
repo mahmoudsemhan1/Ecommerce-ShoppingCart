@@ -10,6 +10,11 @@ namespace MyShop.Entities.Repositiories
     public interface ICategoryRepository:IGenericRepositiory<Category>
     {
         void update(Category category);
+        Product GetById(int id);
+
+        IEnumerable<Category> GetAllCategories();
+
+
 
 
 

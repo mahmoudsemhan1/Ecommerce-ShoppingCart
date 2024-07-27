@@ -22,6 +22,7 @@ namespace MyShop.Entities.Repositiories
         void Add(T entity);
         //_context.Ctegories.Remove(Category);
         void Remove(T entity);
+      
 
         void RemoveRange(IEnumerable<T> entity);
 

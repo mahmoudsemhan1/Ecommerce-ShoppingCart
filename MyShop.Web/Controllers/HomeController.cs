@@ -1,33 +1,36 @@
-using Microsoft.AspNetCore.Mvc;
-using MyShop.DataAcess;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using MyShop.Entities.Models.ViewModels;
 using MyShop.Entities.Models;
-using System.Diagnostics;
+using MyShop.Entities.Repositiories;
 
-namespace MyShop.Web.Controllers
+namespace MyShop.Web.Areas.Customre.Controllers
 {
+    
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var Products = _unitOfWork.product.GetAll();
+            return View(Products);
         }
-
-        public IActionResult Privacy()
+        public IActionResult Details(int id)
         {
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            ShoppingCart shoppingCart = new ShoppingCart()
+            {
+                product= _unitOfWork.category.GetById(id),
+                Count=1
+        };
+         
+            return View(shoppingCart);
         }
     }
 }

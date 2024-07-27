@@ -2,11 +2,9 @@
 @{
     ViewBag.PageTitle = "Category Managment";
     ViewBag.CardTitle = "Create Category";
-    Layout = "_AdminLayout";
-
 }
 
-<form method="post">
+<form method="post" asp-area="Admin" asp-controller="Category" asp-action="Create">
     <div class="mb-3">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -19,11 +17,12 @@
 
     </div>
     <div class="mb-3">
-        <button class="btn btn-primary" type="submit">Create</button>
-        <a asp-action="Index" asp-controller="Category" class="btn btn-secondary"> Back To Index</a>
+        <button type="submit" class="btn btn-primary">Create</button>
     </div>
 
-
 </form>
-@section Scripts{
-<partial name="_validationscriptspartial" />}
+<a href="/Admin/Category" class="btn btn-secondary">Back to List</a>
+
+@section Scripts {
+    <partial name="_validationscriptspartial" />
+}
