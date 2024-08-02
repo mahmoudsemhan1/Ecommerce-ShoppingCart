@@ -31,5 +31,13 @@ namespace MyShop.DataAccess.Implementation
                 productInDb.CategoryId= product.CategoryId;
             }
         }
+        public Product GetById(int id)
+        {
+            var ProCat = _context.products
+                .Include(c => c.category)
+                .SingleOrDefault(x => x.Id == id);
+            return ProCat;
+
+        }
     }
 }

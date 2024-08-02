@@ -11,6 +11,8 @@ namespace MyShop.Entities.Repositiories
     {
         void update(Product product);
 
+        Product GetById(int id);
+
 
 
 

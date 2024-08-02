@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.6" />
@@ -43,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\_CartItemCountPartial.cshtml" />
     <None Include="Views\Shared\_Customer.cshtml" />
     <None Include="wwwroot\Customer\js\scripts.js" />
   </ItemGroup>

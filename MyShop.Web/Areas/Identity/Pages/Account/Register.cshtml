@@ -1,5 +1,9 @@
 ﻿@page
+@using Microsoft.AspNetCore.Authorization
+@using Myshop.Utilities
 @model RegisterModel
+@inject IAuthorizationService AuthorizationService
+
 @{
     ViewData["Title"] = "Register";
 }
@@ -41,7 +45,18 @@
                         <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                     </div>
-                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "AdminRole")).Succeeded)
+                    {
+                        <input type="radio" value="@SD.AdminRole" name="RoleRadio" /> @SD.AdminRole
+                        <input type="radio" value="@SD.EditorRole" name="RoleRadio" /> @SD.EditorRole
+                        <input type="radio" value="@SD.CustomerRole" name="RoleRadio" /> @SD.CustomerRole
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Create New User</button>
+                    }
+                    else
+                    {
+
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                    }
                 </form>
             </div>
             <div class="col-md-6 col-md-offset-2">

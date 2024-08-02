@@ -1,0 +1,39 @@
+﻿.container {
+    max-width: 960px;
+}
+
+.form-check-label {
+    padding-left: 0.25rem;
+}
+
+.cart-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+    .cart-summary .total-row {
+        font-weight: bold;
+    }
+
+    .cart-summary .edit-link {
+        float: right;
+        color: blue;
+    }
+
+.security {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.btn-back, .btn-continue {
+    width: 100%;
+}
+
+.btn-continue {
+    margin-top: 10px;
+}
+

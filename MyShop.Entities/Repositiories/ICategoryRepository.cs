@@ -7,15 +7,9 @@ using System.Threading.Tasks;
 
 namespace MyShop.Entities.Repositiories
 {
-    public interface ICategoryRepository:IGenericRepositiory<Category>
+    public interface IApplicationUserRepository : IGenericRepositiory<ApplicationUser>
     {
-        void update(Category category);
-        Product GetById(int id);
-
-        IEnumerable<Category> GetAllCategories();
-
-
-
+       
 
 
     }

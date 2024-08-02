@@ -13,13 +13,10 @@ namespace MyShop.DataAccess.Implementation
     public class CategoryRepository : GenericRepositiory<Category>,ICategoryRepository
     {
         private readonly ApplicationDbConext _context;
-
-       
-
-        public CategoryRepository(ApplicationDbConext context) : base(context)
+        public CategoryRepository(ApplicationDbConext context): base(context)
         {
-            _context = context;
-
+            _context=context;
+            
         }
 
         public IEnumerable<Category> GetAllCategories()
@@ -27,14 +24,7 @@ namespace MyShop.DataAccess.Implementation
             return _context.Categories.ToList();
         }
 
-        public Product GetById(int id)
-        {
-            var ProCat=_context.products
-                .Include(c=>c.category)
-                .SingleOrDefault(x=>x.Id==id);
-            return ProCat;
-
-        }
+    
 
         public void update(Category category)
         {

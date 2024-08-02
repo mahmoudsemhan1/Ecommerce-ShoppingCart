@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Myshop.Utilities;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,17 +16,25 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbConext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
 //
-builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders().AddDefaultUI()
+builder.Services.AddIdentity<IdentityUser,IdentityRole>(options=>
+options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromDays(1))
+    .AddDefaultTokenProviders().AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbConext>();
+
+//authorize
+builder.Services.AddAuthorization(options =>
+options.AddPolicy("AdminRole", p=>p.RequireClaim("Admin","Admin"))
+);
 
 builder.Services.AddSingleton<IEmailSender,EmailSender>();
 
 //add services  (unitofwork)
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); 
+builder.Services.AddScoped<ShoppingCart>();
 
-
-
+// Add HttpContextAccessor
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

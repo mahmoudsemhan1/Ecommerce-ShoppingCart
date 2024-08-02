@@ -1,21 +1,27 @@
-﻿@model MyShop.Entities.Models.ViewModels.ShoppingCart
+﻿@model Product
 
+@if(User.Identity.IsAuthenticated){
+
+
+<form method="post" asp-area="" asp-controller="Home" asp-action="AddItemToShoppingCart">
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
+                <input hidden asp-for="Id" />
             <div class="col-md-6">
-                <img class="card-img-top mb-5 mb-md-0" src="/@Model.product.Img" alt="Product Image" width="300" height="300" />
+                <img class="card-img-top mb-5 mb-md-0" src="/@Model.Img" alt="Product Image" width="300" height="300" />
             </div>
             <div class="col-md-6">
-                <div class="small mb-1">@Model.product.category.Name</div>
+                <div class="small mb-1">@Model.category.Name</div>
                 <h1 class="display-5 fw-bolder">Shop item </h1>
                 <div class="fs-5 mb-5">
-                    <span >@Model.product.Price.ToString("C")</span>
+                    <span >@Model.Price.ToString("C")</span>
                 </div>
-                <p class="lead">@Model.product.Description</p>
+                <p class="lead">@Model.Description</p>
                 <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" asp-for="Count" style="width: 100px;" />
-                    <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                        <input class="form-control text-center me-3" type="number" id="inputQuantity" name="quantity" value="1"  style="width: 100px;" />
+
+                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
                     </button>
@@ -24,3 +30,9 @@
         </div>
     </div>
 </section>
+    </form>
+}
+else
+{
+    
+}

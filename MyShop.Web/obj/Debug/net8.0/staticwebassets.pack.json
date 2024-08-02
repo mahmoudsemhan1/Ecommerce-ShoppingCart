@@ -8337,6 +8337,22 @@
       "PackagePath": "staticwebassets\\Images\\Products\\f60a9b57-f866-4715-ae7c-687dfa243462.jfif"
     },
     {
+      "Id": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\ShoppingCart\\index.html",
+      "PackagePath": "staticwebassets\\ShoppingCart\\index.html"
+    },
+    {
+      "Id": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\ShoppingCart\\style.css",
+      "PackagePath": "staticwebassets\\ShoppingCart\\style.css"
+    },
+    {
+      "Id": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\css\\ShoppingCart.css",
+      "PackagePath": "staticwebassets\\css\\ShoppingCart.css"
+    },
+    {
+      "Id": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\css\\Summary.css",
+      "PackagePath": "staticwebassets\\css\\Summary.css"
+    },
+    {
       "Id": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

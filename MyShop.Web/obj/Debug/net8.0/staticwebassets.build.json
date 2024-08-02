@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q9Net1P74EOrZuMX6R8dQ/+SzEAHuq+/qYANoNYAeYM=",
+  "Hash": "nydFaloydukfRr5Do8swP39bIfy45ewCViRVVg0+fww=",
   "Source": "MyShop.Web",
   "BasePath": "_content/MyShop.Web",
   "Mode": "Default",
@@ -40221,6 +40221,25 @@
       "OriginalItemSpec": "wwwroot\\Admin\\plugins\\uplot\\uPlot.min.css"
     },
     {
+      "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\css\\ShoppingCart.css",
+      "SourceId": "MyShop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\",
+      "BasePath": "_content/MyShop.Web",
+      "RelativePath": "css/ShoppingCart.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\ShoppingCart.css"
+    },
+    {
       "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\css\\site.css",
       "SourceId": "MyShop.Web",
       "SourceType": "Discovered",
@@ -40238,6 +40257,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\css\\Summary.css",
+      "SourceId": "MyShop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\",
+      "BasePath": "_content/MyShop.Web",
+      "RelativePath": "css/Summary.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Summary.css"
     },
     {
       "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\Customer\\assets\\icons8-online-shop-48.png",
@@ -41910,6 +41948,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\ShoppingCart\\index.html",
+      "SourceId": "MyShop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\",
+      "BasePath": "_content/MyShop.Web",
+      "RelativePath": "ShoppingCart/index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ShoppingCart\\index.html"
+    },
+    {
+      "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\ShoppingCart\\style.css",
+      "SourceId": "MyShop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\",
+      "BasePath": "_content/MyShop.Web",
+      "RelativePath": "ShoppingCart/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ShoppingCart\\style.css"
     }
   ]
 }
