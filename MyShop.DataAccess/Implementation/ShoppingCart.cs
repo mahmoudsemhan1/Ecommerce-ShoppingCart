@@ -23,21 +23,38 @@ namespace MyShop.DataAccess.Implementation
         }
         public void AddItem(string userId, int itemId, int quantity)
         {
+            // Ensure the cart exists for the user
+            var cart = _context.Carts.FirstOrDefault(c => c.ApplicationUserId == userId);
+            if (cart == null)
+            {
+                cart = new Cart
+                {
+                    ApplicationUserId = userId,
+                    CartItems = new List<CartItem>()
+                };
+                _context.Carts.Add(cart);
+                _context.SaveChanges(); // Save changes to ensure CartId is generated
+            }
+
+            // Check if the cart item already exists
             var cartItem = _context.CartItems.SingleOrDefault(
                 c => c.ApplicationUserId == userId && c.ProductId == itemId);
 
             if (cartItem == null)
             {
+                // If the cart item does not exist, create a new one
                 cartItem = new CartItem
                 {
                     ApplicationUserId = userId,
                     ProductId = itemId,
-                    Quantity = quantity
+                    Quantity = quantity,
+                    CartId = cart.Id // Associate the cart item with the cart
                 };
                 _context.CartItems.Add(cartItem);
             }
             else
             {
+                // If the cart item already exists, update its quantity
                 cartItem.Quantity += quantity;
             }
 
@@ -63,7 +80,7 @@ namespace MyShop.DataAccess.Implementation
             _context.SaveChanges();
         }
 
-        public int GetCartItemCount()
+        public int GetItemCount()
         {
             var user = _httpContextAccessor.HttpContext?.User;
             if (user == null || !user.Identity.IsAuthenticated)
@@ -72,18 +89,10 @@ namespace MyShop.DataAccess.Implementation
             }
 
             var userId = user.FindFirstValue(ClaimTypes.NameIdentifier);
-
             var cart = _context.Carts.Include(c =>c.CartItems).FirstOrDefault(c => c.ApplicationUserId == userId);
-            if (cart == null)
-            {
-                cart = new Cart
-                {
-                    ApplicationUserId = userId,
-                    CartItems = new List<CartItem>()
-                };
-
-            }
+           
             return cart?.CartItems.Sum(ci => ci.Quantity) ?? 0;
         }
+
     }
 }

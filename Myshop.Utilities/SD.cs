@@ -12,5 +12,23 @@ namespace Myshop.Utilities
         public static string EditorRole = "Editor";
         public static string CustomerRole = "Customer";
 
+
+        public static string Pending = "Pending";
+        public static string Approve = "Approved";
+        public static string Proccessing = "Proccessing";
+        public static string Shipped = "Shipped";
+        public static string Cancelled = "Cancelled";
+        public static string Refund = "Refund";
+        public static string Rejected = "Rejected";
+
+
+
+        public static string SeeionKey = "ShoppingCartSession";
+
+
+
+
+
+
     }
 }

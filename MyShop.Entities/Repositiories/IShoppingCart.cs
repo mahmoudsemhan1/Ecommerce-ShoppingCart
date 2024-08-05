@@ -13,7 +13,7 @@ namespace MyShop.Entities.Repositiories
 		 void AddItem(string userId, int itemId, int quantity);
 		IEnumerable<CartItem> GetCartItems(Expression<Func<CartItem, bool>>? perdicate = null);
 		void ClearCart();
-        int GetCartItemCount();
+        int GetItemCount();
 
 
     }

@@ -1,7 +1,7 @@
 ﻿@inject MyShop.DataAccess.Implementation.ShoppingCart cartService
 
 @{
-    var itemCount = cartService.GetCartItemCount();
+    var itemCount = cartService.GetItemCount();
 }
 
 <a class="btn btn-outline-dark" asp-area="Customer" asp-controller="Cart" asp-action="Index">

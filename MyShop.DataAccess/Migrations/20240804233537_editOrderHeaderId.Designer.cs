@@ -12,8 +12,8 @@ using MyShop.DataAcess;
 namespace MyShop.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbConext))]
-    [Migration("20240802134448_AddTableCart")]
-    partial class AddTableCart
+    [Migration("20240804233537_editOrderHeaderId")]
+    partial class editOrderHeaderId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -263,7 +263,7 @@ namespace MyShop.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CartId")
+                    b.Property<int>("CartId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
@@ -314,9 +314,6 @@ namespace MyShop.Web.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("OrderHeaderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -519,15 +516,19 @@ namespace MyShop.Web.Migrations
 
             modelBuilder.Entity("MyShop.Entities.Models.CartItem", b =>
                 {
-                    b.HasOne("MyShop.Entities.Models.Cart", null)
+                    b.HasOne("MyShop.Entities.Models.Cart", "Cart")
                         .WithMany("CartItems")
-                        .HasForeignKey("CartId");
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MyShop.Entities.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Cart");
 
                     b.Navigation("Product");
                 });

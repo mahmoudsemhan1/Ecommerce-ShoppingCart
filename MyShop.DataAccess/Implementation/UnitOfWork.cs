@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyShop.DataAcess;
 using MyShop.Entities.Models;
+using MyShop.Entities.Models.ViewModels;
 using MyShop.Entities.Repositiories;
 using System;
 using System.Collections.Generic;

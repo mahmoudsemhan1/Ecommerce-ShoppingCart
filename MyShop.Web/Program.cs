@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Myshop.Utilities;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,9 @@ builder.Services.AddScoped<ShoppingCart>();
 
 // Add HttpContextAccessor
 builder.Services.AddHttpContextAccessor();
+// Read the Stripe API key from configuration
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
 
 var app = builder.Build();
 

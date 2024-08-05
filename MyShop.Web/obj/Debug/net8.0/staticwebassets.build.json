@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nydFaloydukfRr5Do8swP39bIfy45ewCViRVVg0+fww=",
+  "Hash": "YDh9M4P0VQ+psfbLiog0Uo9nfL4USy+13ZiBpgmRh3c=",
   "Source": "MyShop.Web",
   "BasePath": "_content/MyShop.Web",
   "Mode": "Default",
@@ -40428,6 +40428,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\748bd16b-3183-4752-9a88-127972caffe3.jfif"
+    },
+    {
+      "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\Images\\Products\\750ac7a5-0ae8-4ad5-a887-9d34c640971e.jfif",
+      "SourceId": "MyShop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\",
+      "BasePath": "_content/MyShop.Web",
+      "RelativePath": "Images/Products/750ac7a5-0ae8-4ad5-a887-9d34c640971e.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\750ac7a5-0ae8-4ad5-a887-9d34c640971e.jfif"
     },
     {
       "Identity": "F:\\MyProjects\\MyShop\\MyShop.Web\\wwwroot\\Images\\Products\\77c43b88-f2f1-4426-adce-0bd05af51de8.jfif",

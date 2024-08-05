@@ -13,7 +13,8 @@ namespace MyShop.Entities.Models
         public string ApplicationUserId { get; set; }
         [ValidateNever]
         public ApplicationUser ApplicationUser { get; set; }
-        [ValidateNever]
-        public ICollection<CartItem> CartItems { get; set; }
+        
+
+        public ICollection<CartItem> CartItems { get; set; }=new List<CartItem>();
     }
 }
