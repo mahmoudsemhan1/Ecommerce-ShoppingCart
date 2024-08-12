@@ -1,4 +1,6 @@
 ﻿@model ShoppingCartVM
+@using Microsoft.Extensions.Options
+@inject IOptions<Myshop.Utilities.Stripe> Stripe
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,13 +70,13 @@
                                     <!-- Phone Number Field -->
                                     <div class="form-group col-md-6">
                                         <label for="phone">Phone Number</label>
-                                        <input type="text" class="form-control" id="phone" asp-for="@Model.OrderHeader.Phone">
+                                        <input type="text" class="form-control" id="phone" asp-for="@Model.OrderHeader.ApplicationUser.PhoneNumber">
                                         <span asp-validation-for="OrderHeader.Phone" class="text-danger"></span>
                                     </div>
                                     <!-- Address Field -->
                                     <div class="form-group col-md-6">
                                         <label for="address">Address</label>
-                                        <input type="text" class="form-control" id="address" asp-for="@Model.OrderHeader.Address">
+                                        <input type="text" class="form-control" id="address" asp-for="@Model.OrderHeader.ApplicationUser.Adress">
                                         <span asp-validation-for="OrderHeader.Address" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -92,16 +94,22 @@
                         <!-- Shopping Cart Summary -->
                         <div class="col-md-6">
                             <div class="cart-summary">
-                                <h2>Cart Summary <a href="#" class="edit-link">Edit</a></h2>
+                                <h2>Cart Summary <a asp-controller="Cart" asp-action="Index" class="edit-link">Edit</a></h2>
 
                                 @foreach (var item in Model.CartItemsList)
                                 {
                                     <div class="cart-item d-flex justify-content-between mb-3 align-items-center">
                                         <div class="d-flex align-items-center">
-                                            <img src="/@item.Product.Img" alt="Product Image" class="cart-item-img img-fluid">
-                                            <div class="ml-3">
-                                                <h5 class="mb-1">@item.Product.Name</h5>
+                                            <div class="col-3 col-md-2 col-lg-1 text-center position-relative">
+                                                <img src="/@item.Product.Img" alt="photo" class="img-fluid rounded" style="max-width: 90px;">
+                                                <span class="badge badge-pill bg-primary text-white position-absolute"
+                                                      style="top: 5px; right: 5px; padding: 5px 10px;">
+                                                    @item.Quantity
+                                                </span>
                                             </div>
+                                        </div>
+                                        <div >
+                                            <h5 class="mb-1">@item.Product.Name</h5>
                                         </div>
                                         <span class="product-price">@item.Product.Price.ToString("C")</span>
                                     </div>
@@ -114,7 +122,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success btn-continue">Place Order</button>
-                            <button type="button" class="btn btn-secondary btn-back">Back to Shopping</button>
+                            <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="Index">Back to Shopping</a>
                         </div>
                     </div>
                 </form>

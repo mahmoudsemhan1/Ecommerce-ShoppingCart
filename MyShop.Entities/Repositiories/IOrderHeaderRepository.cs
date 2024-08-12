@@ -11,7 +11,9 @@ namespace MyShop.Entities.Repositiories
     {
         void update(OrderHeader orderHeader);
 
-        void UpdateOrderStatus(int id, string Orderstatus,string PaymentStatus);
+        void UpdateOrderStatus(int id, string Orderstatus,string? PaymentStatus);
+        IEnumerable<OrderHeader> GetAllOrderHeader();
+
 
 
 

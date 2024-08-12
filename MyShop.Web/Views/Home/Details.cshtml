@@ -17,7 +17,7 @@
                 <div class="fs-5 mb-5">
                     <span >@Model.Price.ToString("C")</span>
                 </div>
-                <p class="lead">@Model.Description</p>
+                <p class="lead">@Html.Raw(Model.Description)</p>
                 <div class="d-flex">
                         <input class="form-control text-center me-3" type="number" id="inputQuantity" name="quantity" value="1"  style="width: 100px;" />
 

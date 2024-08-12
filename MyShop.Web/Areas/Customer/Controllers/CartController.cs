@@ -134,6 +134,7 @@ namespace MyShop.Web.Areas.Customer.Controllers
             shoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
             shoppingCartVM.OrderHeader.Phone = shoppingCartVM.OrderHeader.ApplicationUser.PhoneNumber;
             shoppingCartVM.OrderHeader.Name = shoppingCartVM.OrderHeader.ApplicationUser.UserName;
+           
 
 
             foreach (var item in shoppingCartVM.CartItemsList)
@@ -180,6 +181,7 @@ namespace MyShop.Web.Areas.Customer.Controllers
                     },
                     Quantity = item.Quantity
                 });
+                
             }
 
             var service = new Stripe.Checkout.SessionService();
@@ -188,6 +190,25 @@ namespace MyShop.Web.Areas.Customer.Controllers
             _unitOfWork.Complete();
 
             return Redirect(session.Url);  // This will redirect the user to the Stripe Checkout page
+        }
+        public  IActionResult OrderConfirmation(int id)
+        {
+            OrderHeader orderHeader = _unitOfWork.orderHeader.GetFirstOrDefualt(u => u.Id == id);
+            var service=new Stripe.Checkout.SessionService();
+            Stripe.Checkout.Session session= service.Get(orderHeader.SessionId);
+            
+
+            if (session.PaymentStatus.ToLower() == "paid")
+            {
+                _unitOfWork.orderHeader.UpdateOrderStatus(id, SD.Approve, SD.Approve);
+                orderHeader.PaymentIntentId = session.PaymentIntentId;
+                _unitOfWork.Complete();
+            }
+            List<CartItem> cartItems = _unitOfWork.shoppingCart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
+            _unitOfWork.shoppingCart.RemoveRange(cartItems);
+            _unitOfWork.Complete();
+
+            return View(id);
         }
     }
 }

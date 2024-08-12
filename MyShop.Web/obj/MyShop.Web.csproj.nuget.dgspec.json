@@ -340,6 +340,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[45.6.0, )"
+            },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[8.1.0, )"
             }
           },
           "imports": [

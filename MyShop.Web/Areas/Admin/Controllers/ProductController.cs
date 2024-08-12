@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Entities.Models;
@@ -11,6 +12,8 @@ using System.IO;
 namespace MyShop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize("AdminRole")]
+
     public class ProductController : Controller
     {
 
@@ -38,7 +41,7 @@ namespace MyShop.Web.Areas.Admin.Controllers
             return View(viewModel);
 
         }
-       // [HttpGet]
+        [HttpGet]
         //public IActionResult GetData()
         //{
         //    var listofcat = _unitOfWork.category.GetAllCategories().ToList();

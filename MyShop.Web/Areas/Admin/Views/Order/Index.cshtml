@@ -1,0 +1,65 @@
+﻿@model IEnumerable<OrderVM>
+
+@{
+    ViewBag.PageTitle = "Order Management";
+    Layout = "_AdminLayout";
+}
+
+<!-- Include DataTables CSS -->
+<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">List of Orders</h3>
+    </div>
+    <div class="card-body">
+        <table id="ordersTable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Order Status</th>
+                    <th>Order Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var orderVM in Model)
+                {
+                    <tr>
+                        <td>@orderVM.orderHeader.Id</td>
+                        <td>@orderVM.orderHeader.ApplicationUser.Name</td>
+                        <td>@orderVM.orderHeader.Phone</td>
+                        <td>@orderVM.orderHeader.ApplicationUser.Email</td>
+                        <td>@orderVM.orderHeader.OrderStatus</td>
+                        <td>@orderVM.orderHeader.TotalPrice.ToString("C")</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Order", new { id = orderVM.orderHeader.Id })" class="btn btn-info btn-sm me-2">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Include jQuery and DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#ordersTable').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true
+            });
+        });
+    </script>
+}

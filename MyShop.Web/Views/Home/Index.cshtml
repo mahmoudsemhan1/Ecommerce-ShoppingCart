@@ -1,17 +1,20 @@
-﻿@model IEnumerable<Product>
-
+﻿@model IPagedList<Product>
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@using X.PagedList.Web.Common
 
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            @foreach (var item in Model){
+            @foreach (var item in Model)
+            {
                 <div class="col mb-5">
                     <div class="card h-100">
                         <!-- Product image-->
                         <a asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">
                             <img class="card-img-top" src="/@item.Img" alt="..." width="350px" height="300px" />
                         </a>
-                            <!-- Product details-->
+                        <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
@@ -21,13 +24,34 @@
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">Add To Cart</a></div>
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto" asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">View Details</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             }
-     
-            
         </div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                     new PagedListRenderOptions
+            {
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                LinkToPreviousPageFormat = "«",
+                LinkToNextPageFormat = "»",
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                MaximumPageNumbersToDisplay = 5
+            }
+                     )
+        </div>
+
+
     </div>
 </section>

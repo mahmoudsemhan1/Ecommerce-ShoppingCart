@@ -1,71 +1,81 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="~/css/shoppingcart.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="container">
-        <div class="shopping-cart-container">
-            <div class="cart-header d-flex justify-content-between align-items-center">
-                <h4 class="mb-0">Shopping Cart</h4>
-                <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Continue Shopping</a>
-            </div>
+﻿<form method="post">
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Shopping Cart Section -->
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-light d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Shopping Cart</h4>
+                        <a class="btn btn-light" asp-area="" asp-controller="Home" asp-action="Index">Continue Shopping</a>
+                    </div>
+                    <div class="card-body bg-light">
+                        @if (Model.CartItemsList.Count == 0)
+                        {
+                            <div class="alert alert-warning text-center" role="alert">
+                                Your cart is empty. Start adding products to your cart!
+                            </div>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model.CartItemsList)
+                            {
+                                <div class="row mb-3 align-items-center">
+                                    <!-- Product Image with Quantity Badge -->
+                                    <div class="col-3 col-md-2 col-lg-1 text-center position-relative">
+                                        <img src="/@item.Product.Img" alt="photo" class="img-fluid rounded" style="max-width: 90px;">
+                                        <span class="badge badge-pill bg-primary text-white position-absolute"
+                                              style="top: 5px; right: 5px; padding: 5px 10px;">
+                                            @item.Quantity
+                                        </span>
+                                    </div>
 
-            @foreach (var item in Model.CartItemsList)
-            {
-                <div class="cart-item">
-                    <img src="/@item.Product.Img" alt="photo">
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="cart-item-info">
-                                    <h5 class="mb-2">@item.Product.Name</h5>
-                                    <p class="text-muted mb-0" style="max-width: 800px;">@item.Product.Description</p>
+                                    <!-- Product Name and Description -->
+                                    <div class="col-9 col-md-7 col-lg-6">
+                                        <h5><strong>@item.Product.Name</strong></h5>
+                                        <p><small>@Html.Raw(item.Product.Description)</small></p>
+                                    </div>
+
+                                    <!-- Price, Quantity Control, and Remove Button -->
+                                    <div class="col-12 col-md-3 col-lg-5 d-flex justify-content-around align-items-center">
+                                        <h6 class="mb-0">
+                                            @item.Product.Price.ToString("c")
+                                        </h6>
+
+                                        <div class="btn-group" role="group">
+                                            <a class="btn btn-dark btn-sm" asp-controller="Cart" asp-action="Plus" asp-route-CartItemId="@item.CartItemId" title="Increase Quantity">
+                                                <i class="bi bi-plus-square"></i>
+                                            </a>
+                                            <a class="btn btn-dark btn-sm" asp-controller="Cart" asp-action="Minus" asp-route-CartItemId="@item.CartItemId" title="Decrease Quantity">
+                                                <i class="bi bi-dash-square"></i>
+                                            </a>
+                                        </div>
+
+                                        <a class="btn btn-danger btn-sm" asp-controller="Cart" asp-action="Remove" asp-route-CartItemId="@item.CartItemId" data-toggle="modal" data-target="#confirmRemoveModal">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr />
+                            }
+
+                            <!-- Order Summary Section -->
+                            <div class="card-body bg-light">
+                                <div class="d-flex justify-content-end">
+                                    <div style="border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px; display: inline-flex;">
+                                        <h5 class="font-weight-bold mb-0" style="margin-right: 10px;">Total (USD):</h5>
+                                        <h5 class="font-weight-bold mb-0">@Model.TotalCarts.ToString("C")</h5>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end mt-4">
+                                    <a class="btn btn-primary btn-lg" asp-controller="Cart" asp-action="Summary">Checkout</a>
                                 </div>
                             </div>
-                        </div>
+
+
+                        }
                     </div>
-                    <div class="cart-item-controls  d-flex align-items-center">
-                        <div class="row">
-                        <span>@item.Product.Price.ToString("C")</span>
-                        <span>x @item.Quantity</span>
-                        </div>
-                        <div>
-                            <a class="btn btn-secondary btn-sm" asp-controller="Cart" asp-action="Plus" asp-route-CartItemId="@item.CartItemId">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                            <a class="btn btn-secondary btn-sm" asp-controller="Cart" asp-action="Minus" asp-route-CartItemId="@item.CartItemId">
-                            <i class="fas fa-minus"></i>
-                        </a>
-                            <a class="btn btn-danger btn-sm m-3" asp-controller="Cart" asp-action="Remove" asp-route-CartItemId="@item.CartItemId">
-                            <i class="fas fa-trash"></i>
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            }
-            <div class="cart-total mt-4">
-                <div class="total-amount w-100">
-                    <h5>Total (USD)</h5>
-                    <h5>
-                        @Model.TotalCarts.ToString("C")
-                    </h5>
                 </div>
             </div>
-
-        </div>
-        <div class="d-flex  justify-content-end m-2 ">
-            <a class="btn btn-primary" asp-controller="Cart" asp-action="Summary">Summary</a>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</form>

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Myshop.Utilities;
 using Stripe;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +17,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbConext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
+
+builder.Services.Configure<Myshop.Utilities.Stripe>(builder.Configuration.GetSection("Stripe"));
 //
 builder.Services.AddIdentity<IdentityUser,IdentityRole>(options=>
 options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromDays(1))
-    .AddDefaultTokenProviders().AddDefaultUI()
+    .AddDefaultTokenProviders()
+    .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbConext>();
 
 //authorize
@@ -37,7 +41,7 @@ builder.Services.AddScoped<ShoppingCart>();
 // Add HttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 // Read the Stripe API key from configuration
-StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+//StripeConfiguration.ApiKey = builder.Configuration["Stripe"];
 
 
 var app = builder.Build();
@@ -54,7 +58,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+StripeConfiguration.ApiKey= builder.Configuration.GetSection("Stripe:secretkey").Get<string>();
 app.UseAuthorization();
 app.MapRazorPages();
 

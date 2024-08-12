@@ -2,10 +2,10 @@
 @{
     ViewBag.PageTitle = "Product Managment";
     ViewBag.CardTitle = "Create Product";
-    Layout = "_AdminLayout";
 
 }
-
+<div class="row">
+    <div class="col-md-6">
 <form asp-area="Admin" asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label asp-for="Product.Name"></label>
@@ -14,7 +14,9 @@
     </div>
     <div class="mb-3">
         <label asp-for="Product.Description"></label>
-        <input asp-for="Product.Description" class="form-control" />
+        <textarea id="mytextarea" asp-for="Product.Description" class="form-control">
+
+        </textarea>
         <span asp-validation-for="Product.Description" class="text-danger"></span>
 
     </div>
@@ -22,7 +24,6 @@
         <label asp-for="Product.Price"></label>
         <input asp-for="Product.Price" class="form-control" />
         <span asp-validation-for="Product.Price" class="text-danger"></span>
-
     </div>
     <div class="mb-3">
         <label asp-for="Product.Img"></label>
@@ -38,10 +39,33 @@
         <button class="btn btn-primary"  type="submit">Create</button>
         <a asp-area="Admin" asp-controller="Product" asp-action="Index"  class="btn btn-secondary"> Back To Index</a>
     </div>
-
-
-
+      
 </form>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center">
+            <img id="ImagePreview" src="/@Model.Product.Img" ) alt="Product Image" width="300px" height="300" class="img-fluid" />
+        </div>
+    </div>
+</div>
+
+
 @section Scripts {
     <partial name="_validationscriptspartial" />
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+    <script>
+        document.getElementById('imgfile').addEventListener('change', function (event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('ImagePreview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        });
+    </script>
+
 }

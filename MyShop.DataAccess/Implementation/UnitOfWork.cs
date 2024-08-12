@@ -47,6 +47,7 @@ namespace MyShop.DataAccess.Implementation
 
         public void Dispose()
         {
+            
             _context.Dispose();
 
         }

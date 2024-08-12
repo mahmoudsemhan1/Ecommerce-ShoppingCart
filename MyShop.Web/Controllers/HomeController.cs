@@ -5,6 +5,7 @@ using MyShop.DataAccess.Implementation;
 using MyShop.Entities.Models;
 using MyShop.Entities.Repositiories;
 using System.Security.Claims;
+using X.PagedList;
 
 
 namespace MyShop.Web.Areas.Customre.Controllers
@@ -22,9 +23,11 @@ namespace MyShop.Web.Areas.Customre.Controllers
             _shoppingCart = shoppingCart;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            var Products = _unitOfWork.product.GetAll();
+            var PageNumber = page ?? 1;
+            int PageSize = 8;
+            var Products = _unitOfWork.product.GetAll().ToPagedList(PageNumber, PageSize);
             return View(Products);
         }
         public IActionResult Details(int id)

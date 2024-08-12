@@ -22,10 +22,16 @@ namespace MyShop.DataAccess.Implementation
 
         }
 
-		public void update(OrderHeader orderHeader)
-		{
-			_context.OrderHeaders.Update(orderHeader);
+        public IEnumerable<OrderHeader> GetAllOrderHeader()
+        {
+			return _context.OrderHeaders.ToList();	
 		}
+
+        public void update(OrderHeader orderHeader)
+		{
+            var entity = _context.OrderHeaders.Attach(orderHeader);
+            entity.State = EntityState.Modified;
+        }
 
 		public void UpdateOrderStatus(int id, string Orderstatus, string PaymentStatus)
 		{
@@ -33,6 +39,7 @@ namespace MyShop.DataAccess.Implementation
 			if(OrderFromDb != null)
 			{
 				OrderFromDb.OrderStatus=Orderstatus;
+				OrderFromDb.PaymentDate=DateTime.Now;
 				if(PaymentStatus != null)
 				{
 					OrderFromDb.PaymentStatus= PaymentStatus;

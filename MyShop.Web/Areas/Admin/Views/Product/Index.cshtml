@@ -1,9 +1,12 @@
 ﻿@model ProductCategoryViewModel
 
 @{
-    ViewBag.Title = "Product Management";
+    ViewBag.PageTitle = "Product Management";
     Layout = "_AdminLayout";
 }
+
+<!-- Include DataTables CSS in your layout or here -->
+<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
 
 <div class="card">
     <div class="card-header">
@@ -14,7 +17,7 @@
     </div>
     <div class="card-body">
         <table id="productsTable" class="table table-bordered table-hover">
-            <thead>
+            <thead calss="text-bold">
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
@@ -29,7 +32,7 @@
                 {
                     <tr>
                         <td>@product.Name</td>
-                        <td class="" >@product.Description</td>
+                        <td>@Html.Raw(product.Description)</td>
                         <td>@product.Price.ToString("C")</td>
                         <td>@product.category.Name</td>
                         <td>
@@ -38,18 +41,20 @@
                         <td>
                             <a href="@Url.Action("Edit", "Product", new { id = product.Id })" class="btn btn-success btn-sm me-2">Edit</a>
                             <a class="btn btn-danger rounded rounded-3 js-delete" data-id="@product.Id">
-                                <i class="bi bi-trash3"></i>Delete
+                                <i class="bi bi-trash3"></i> Delete
                             </a>
                         </td>
-
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
-
 @section Scripts {
+    <!-- Include jQuery and DataTables JS in your layout or here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function () {
             $('#productsTable').DataTable({
@@ -60,6 +65,45 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true
+            });
+
+            // Handle delete button click
+            $('.js-delete').on('click', function () {
+                var btn = $(this);
+                var id = btn.data('id'); // Get the product ID from data-id attribute
+
+                Swal.fire({
+                    title: 'Are you sure that you need to delete this Product?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: `/Admin/Product/Delete/${id}`,
+                            method: 'DELETE',
+                            success: function () {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Product has been deleted.',
+                                    'success'
+                                );
+                                btn.closest('tr').fadeOut(); // Remove the row from the table
+                            },
+                            error: function () {
+                                Swal.fire(
+                                    'Oops...',
+                                    'Something went wrong.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

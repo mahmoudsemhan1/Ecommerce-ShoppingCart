@@ -32,7 +32,7 @@ namespace MyShop.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
 
                 //_context.Categories.Add(category);
@@ -59,7 +59,7 @@ namespace MyShop.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category category)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
 
                 // _context.Categories.Update(category);
