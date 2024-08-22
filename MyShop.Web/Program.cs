@@ -9,33 +9,37 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Myshop.Utilities;
 using Stripe;
 using Microsoft.Extensions.DependencyInjection;
+using MyShop.Entities.Models;
+using MyShop.DataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddDbContext<ApplicationDbConext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefualtConnection")));
 
 builder.Services.Configure<Myshop.Utilities.Stripe>(builder.Configuration.GetSection("Stripe"));
 //
-builder.Services.AddIdentity<IdentityUser,IdentityRole>(options=>
-options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromDays(1))
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(1);
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders()
-    .AddDefaultUI()
-    .AddEntityFrameworkStores<ApplicationDbConext>();
+    .AddDefaultUI();
 
 //authorize
 builder.Services.AddAuthorization(options =>
-options.AddPolicy("AdminRole", p=>p.RequireClaim("Admin","Admin"))
+options.AddPolicy(SD.AdminRole, p=>p.RequireClaim("Admin","Admin"))
 );
 
 builder.Services.AddSingleton<IEmailSender,EmailSender>();
 
 //add services  (unitofwork)
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>(); 
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<ShoppingCart>();
 
 // Add HttpContextAccessor
@@ -59,6 +63,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 StripeConfiguration.ApiKey= builder.Configuration.GetSection("Stripe:secretkey").Get<string>();
+seeedDb();
 app.UseAuthorization();
 app.MapRazorPages();
 
@@ -71,3 +76,12 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
  
 app.Run();
+
+void seeedDb()
+{
+    using (var scop = app.Services.CreateScope())
+    {
+        var dbInitalizer = scop.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitalizer.Initialize();
+    }
+}

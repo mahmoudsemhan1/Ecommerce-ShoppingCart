@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Myshop.Utilities;
 using MyShop.DataAcess;
 using MyShop.Entities.Models;
 using MyShop.Entities.Repositiories;
@@ -8,6 +10,8 @@ using MyShop.Entities.Repositiories;
 namespace MyShop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.AdminRole)]
+
     public class CategoryController : Controller
     {
 

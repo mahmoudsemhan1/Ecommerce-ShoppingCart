@@ -12,10 +12,10 @@ namespace MyShop.DataAccess.Implementation
 {
     public class GenericRepositiory<T> : IGenericRepositiory<T> where T : class
     {
-        private readonly ApplicationDbConext _context;
+        private readonly ApplicationDbContext _context;
         private DbSet<T> _dbset;
 
-        public GenericRepositiory(ApplicationDbConext context)
+        public GenericRepositiory(ApplicationDbContext context)
         {
             _context = context;
             _dbset = _context.Set<T>();

@@ -14,7 +14,7 @@ namespace MyShop.DataAccess.Implementation
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ApplicationDbConext _context;
+        private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public ICategoryRepository category { get; private set; }
@@ -27,7 +27,7 @@ namespace MyShop.DataAccess.Implementation
 
 		public IApplicationUserRepository ApplicationUser { get; private set; }
 
-		public UnitOfWork(ApplicationDbConext context) 
+		public UnitOfWork(ApplicationDbContext context) 
         {
             _context = context;
             product = new ProductRepository(context);

@@ -3,23 +3,25 @@
 @using X.PagedList
 @using X.PagedList.Web.Common
 
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+<link href="~/css/home.css" rel="stylesheet" />
+
+<section class="full-page">
+    <div class="container-fluid">
+        <div class="row justify-content-center gx-5 gy-4">
             @foreach (var item in Model)
             {
-                <div class="col mb-5">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100">
                         <!-- Product image-->
                         <a asp-controller="Home" asp-action="Details" asp-route-Id="@item.Id">
-                            <img class="card-img-top" src="/@item.Img" alt="..." width="350px" height="300px" />
+                            <img class="card-img-top" src="/@item.Img" alt="..." />
                         </a>
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
                                 <h5 class="fw-bolder">@item.Name</h5>
-                                @item.Price.ToString("C")
+                                <span class="price">@item.Price.ToString("C")</span>
                             </div>
                         </div>
                         <!-- Product actions-->
@@ -48,10 +50,8 @@
                 DisplayLinkToFirstPage = PagedListDisplayMode.Never,
                 DisplayLinkToLastPage = PagedListDisplayMode.Never,
                 MaximumPageNumbersToDisplay = 5
-            }
-                     )
+            })
         </div>
-
-
     </div>
 </section>
+

@@ -9,7 +9,7 @@ using Stripe;
 namespace MyShop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize("AdminRole")]
+    [Authorize(Roles = SD.AdminRole)]
 
 
     public class OrderController : Controller

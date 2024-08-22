@@ -1,0 +1,63 @@
+﻿
+.full-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0 50px;
+}
+
+.card {
+    background-color: #ffffff; /* خلفية الكارد الافتراضية */
+    border: 1px solid #e0e0e0; /* إطار رمادي فاتح */
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+    .card:hover {
+        background-color: slategray; /* لون الخلفية عند التحويم */
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* ظل إضافي عند التحويم */
+    }
+
+
+.card-img-top {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    border-radius: 10px;
+}
+
+
+.fw-bolder {
+    color: #343a40;
+    font-size: 1.25rem;
+}
+
+
+.btn-outline-dark {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .btn-outline-dark:hover {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+.pagination .page-item.active .page-link {
+    background-color: #343a40;
+    color: white;
+    border-color: #343a40;
+}
+
+.pagination .page-link:hover {
+    background-color: #28a745;
+    color: white;
+}
+

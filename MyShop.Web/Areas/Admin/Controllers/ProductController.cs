@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Myshop.Utilities;
 using MyShop.Entities.Models;
 using MyShop.Entities.Models.ViewModels;
 using MyShop.Entities.Repositiories;
@@ -12,7 +13,7 @@ using System.IO;
 namespace MyShop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize("AdminRole")]
+    [Authorize(Roles = SD.AdminRole)]
 
     public class ProductController : Controller
     {

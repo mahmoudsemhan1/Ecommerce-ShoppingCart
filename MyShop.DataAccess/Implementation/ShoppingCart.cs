@@ -11,12 +11,12 @@ namespace MyShop.DataAccess.Implementation
 {
     public class ShoppingCart : GenericRepositiory<CartItem>,IShoppingCart
     {
-        private readonly ApplicationDbConext _context;
+        private readonly ApplicationDbContext _context;
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-        public ShoppingCart(ApplicationDbConext context, IHttpContextAccessor httpContextAccessor) : base(context)
+        public ShoppingCart(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor) : base(context)
         {
             _context = context;
             _httpContextAccessor = httpContextAccessor;

@@ -16,7 +16,7 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Product.Description"></label>
-                <input asp-for="Product.Description" class="form-control" />
+                <textarea id="mytextarea" asp-for="Product.Description" class="form-control"></textarea>
                 <span asp-validation-for="Product.Description" class="text-danger"></span>
             </div>
             <div class="mb-3">
@@ -57,6 +57,10 @@
                 output.src = reader.result;
             };
             reader.readAsDataURL(event.target.files[0]);
+        });
+
+        tinymce.init({
+            selector: '#mytextarea'
         });
     </script>
 }

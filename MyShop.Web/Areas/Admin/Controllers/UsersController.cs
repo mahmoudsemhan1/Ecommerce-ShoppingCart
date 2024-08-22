@@ -10,14 +10,14 @@ using System.Security.Claims;
 namespace MyShop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize("AdminRole")]
+    [Authorize(Roles = SD.AdminRole)]
 
     public class UsersController : Controller
     {
-        private readonly ApplicationDbConext _conext;
+        private readonly ApplicationDbContext _conext;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UsersController(ApplicationDbConext conext, IUnitOfWork unitOfWork)
+        public UsersController(ApplicationDbContext conext, IUnitOfWork unitOfWork)
         {
             _conext = conext;
             _unitOfWork = unitOfWork;

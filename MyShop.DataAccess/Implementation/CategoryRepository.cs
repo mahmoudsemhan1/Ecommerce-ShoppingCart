@@ -12,8 +12,8 @@ namespace MyShop.DataAccess.Implementation
 {
     public class CategoryRepository : GenericRepositiory<Category>,ICategoryRepository
     {
-        private readonly ApplicationDbConext _context;
-        public CategoryRepository(ApplicationDbConext context): base(context)
+        private readonly ApplicationDbContext _context;
+        public CategoryRepository(ApplicationDbContext context): base(context)
         {
             _context=context;
             

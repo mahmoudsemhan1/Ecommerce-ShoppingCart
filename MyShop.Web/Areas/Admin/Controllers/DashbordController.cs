@@ -6,7 +6,7 @@ using MyShop.Entities.Repositiories;
 namespace MyShop.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize("AdminRole")]
+    [Authorize(Roles = SD.AdminRole)]
     public class DashbordController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

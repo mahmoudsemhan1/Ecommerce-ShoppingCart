@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyShop.Entities\MyShop.Entities.csproj" />
+    <ProjectReference Include="..\Myshop.Utilities\Myshop.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

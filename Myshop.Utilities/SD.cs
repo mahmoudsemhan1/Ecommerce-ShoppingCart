@@ -8,8 +8,8 @@ namespace Myshop.Utilities
 {
     public static class SD
     {
-        public static string AdminRole = "Admin";
-        public static string EditorRole = "Editor";
+        public const string AdminRole = "Admin";
+        public const string EditorRole = "Editor";
         public static string CustomerRole = "Customer";
 
 

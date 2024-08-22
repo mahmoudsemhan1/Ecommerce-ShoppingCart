@@ -3,6 +3,8 @@
 @{
     ViewBag.PageTitle = "Product Management";
     Layout = "_AdminLayout";
+    ViewBag.CardTitle = "List Of Products";
+
 }
 
 <!-- Include DataTables CSS in your layout or here -->
@@ -10,7 +12,6 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">List Of Products</h3>
         <div class="card-tools">
             <a asp-controller="Product" asp-action="Create" class="btn btn-primary">Create New</a>
         </div>

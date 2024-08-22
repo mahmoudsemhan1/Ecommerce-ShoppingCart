@@ -12,8 +12,8 @@ namespace MyShop.DataAccess.Implementation
 {
     public class ProductRepository : GenericRepositiory<Product>,IProductRepository
     {
-        private readonly ApplicationDbConext _context;
-        public ProductRepository(ApplicationDbConext context) : base(context)
+        private readonly ApplicationDbContext _context;
+        public ProductRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
 

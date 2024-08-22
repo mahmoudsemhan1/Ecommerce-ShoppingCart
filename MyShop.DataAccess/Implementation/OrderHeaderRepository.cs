@@ -12,11 +12,11 @@ namespace MyShop.DataAccess.Implementation
 {
     public class OrderHeaderRepository : GenericRepositiory<OrderHeader>,IOrderHeaderRepository
     {
-        private readonly ApplicationDbConext _context;
+        private readonly ApplicationDbContext _context;
 
        
 
-        public OrderHeaderRepository(ApplicationDbConext context) : base(context)
+        public OrderHeaderRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
 

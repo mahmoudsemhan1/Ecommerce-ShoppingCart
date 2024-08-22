@@ -12,9 +12,9 @@ namespace MyShop.DataAccess.Implementation
 {
     public class OrderDetailRepository : GenericRepositiory<OrderDetails>, IOrderDetailsRepository
     {
-        private readonly ApplicationDbConext _context;
+        private readonly ApplicationDbContext _context;
 
-		public OrderDetailRepository(ApplicationDbConext context):base(context) 
+		public OrderDetailRepository(ApplicationDbContext context):base(context) 
 		{
 			_context = context;
 		}

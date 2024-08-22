@@ -1,5 +1,4 @@
 ﻿@using Myshop.Utilities
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,13 +26,15 @@
                         <a class="nav-link active" aria-current="page"
                            asp-area="" asp-controller="Home">Home</a>
                     </li>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    @if (User.Identity.IsAuthenticated)
                     {
+                        @if (User.IsInRole("Admin"))
+                        {
                             <li class="nav-item">
-                                <a class="nav-link active" asp-area="Admin" asp-controller="Home">Dashbord</a>
+                                <a class="nav-link active" href="/Admin/Dashbord/Index" >Dashbord</a>
                             </li>
-                    }
-                      else
+                        }
+                        else
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Setting</a>
@@ -44,10 +45,8 @@
                                 </ul>
                             </li>
                         }
-                       
-               
+                    } 
                 </ul>
-
                 <form class="d-flex">
                     @if (User.Identity.IsAuthenticated)
                     {

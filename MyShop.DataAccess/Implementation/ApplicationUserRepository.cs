@@ -12,8 +12,8 @@ namespace MyShop.DataAccess.Implementation
 {
     public class ApplicationUserRepository : GenericRepositiory<ApplicationUser>,IApplicationUserRepository
     {
-        private readonly ApplicationDbConext _context;
-        public ApplicationUserRepository(ApplicationDbConext context): base(context)
+        private readonly ApplicationDbContext _context;
+        public ApplicationUserRepository(ApplicationDbContext context): base(context)
         {
             _context=context;
             
